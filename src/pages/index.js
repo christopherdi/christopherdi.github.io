@@ -2,7 +2,6 @@ import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
 
 import Heading from '@theme/Heading';
 import styles from './index.module.css';
@@ -13,14 +12,14 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          Christopher Di
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle">Data Science @ UC Berkeley | Software Engineering Intern</p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            to="/experience">
+            View My Experience 💼
           </Link>
         </div>
       </div>
@@ -33,10 +32,23 @@ export default function Home() {
   return (
     <Layout
       title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="Christopher Di - Data Scientist and Software Engineer Portfolio">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        <section className={styles.aboutSection} style={{padding: '2rem 0', maxWidth: '800px', margin: '0 auto'}}>
+          <div className="container">
+            <Heading as="h2">About Me</Heading>
+            <p>
+              I am a Data Science student at <b>UC Berkeley</b> with a passion for building 
+              high-performance software and data-driven solutions. My experience ranges from 
+              <b>Data Science at Zoom</b> to <b>Software Engineering at IBM</b>.
+            </p>
+            <p>
+              I specialize in Python, C++, and React, and I enjoy solving complex problems 
+              involving hardware accelerators and large-scale data pipelines.
+            </p>
+          </div>
+        </section>
       </main>
     </Layout>
   );
