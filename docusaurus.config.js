@@ -91,10 +91,15 @@ const config = {
           {to: '/experience', label: 'Experience', position: 'left'},
           {to: '/projects', label: 'Projects', position: 'left'},
           {to: '/hobbies', label: 'Hobbies', position: 'left'},
-          // Add this new item here
           {
             href: '/Christopher_Di_Resume.pdf',
             label: 'Resume',
+            position: 'right',
+          },
+          // Add the LinkedIn link here
+          {
+            href: 'https://www.linkedin.com/in/your-profile-url', // Replace with your actual URL
+            label: 'LinkedIn',
             position: 'right',
           },
           {
