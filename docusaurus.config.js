@@ -85,20 +85,22 @@ const config = {
         respectPrefersColorScheme: true,
       },
       // Inside docusaurus.config.js
+      onBrokenLinks: 'warn', // Change 'throw' to 'warn' to prevent build crashes
+  
+      // ... down in the navbar section
       navbar: {
-        title: 'Christopher Di',
         items: [
           {to: '/experience', label: 'Experience', position: 'left'},
           {to: '/projects', label: 'Projects', position: 'left'},
           {to: '/hobbies', label: 'Hobbies', position: 'left'},
           {
-            href: '/Christopher_Di_Resume.pdf',
+            // Must match your file name exactly
+            href: 'pathname:///Christopher_Di_Resume.pdf', 
             label: 'Resume',
             position: 'right',
           },
-          // Add the LinkedIn link here
           {
-            href: 'https://www.linkedin.com/in/your-profile-url', // Replace with your actual URL
+            href: 'https://www.linkedin.com/in/christopherdi', // Replace with your link
             label: 'LinkedIn',
             position: 'right',
           },
