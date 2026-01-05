@@ -1,13 +1,11 @@
 /**
- * COLLIDING BIG-BUBBLE LAVA LAMP
+ * NO-OVERLAP GLOW LAVA LAMP
  */
 
 :root {
   --ifm-color-primary: #88bdf2;
-  --ifm-background-color: #1e2730; 
 }
 
-/* LOCK VIEWPORT */
 html, body, #__docusaurus {
   height: 100vh !important;
   overflow: hidden !important;
@@ -18,7 +16,6 @@ html, body, #__docusaurus {
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -27,69 +24,63 @@ html, body, #__docusaurus {
   z-index: 1;
 }
 
-/* THE COLLISION ENGINE (GOOEY EFFECT) */
+/* THE NEW FILTER */
 .blob-wrapper {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* High contrast + Blur on children = Colliding/Merging effect */
-  filter: contrast(25) cubic-bezier(0, 0, 1, 1);
-  background: #1e2730;
+  filter: url('#goo-no-overlap-glow'); 
   z-index: 0;
 }
 
-/* BASE BLOB STYLING - Much bigger and blurrier for merging */
+/* BASE BLOB STYLING - Shadows removed from here */
 .lava-blob {
   position: absolute;
-  filter: blur(2px); /* Blur is required for the gooey 'collision' to work */
-  opacity: 1;
   background: #88bdf2;
   border-radius: 50%;
+  /* No box-shadow here; it's handled by SVG for flat overlaps */
   animation: morph 8s infinite ease-in-out alternate;
 }
 
-/* --- SCALED UP BUBBLES --- */
-.blob-1 { width: 400px; height: 400px; top: 10%; left: 5%; animation: up-right 18s infinite alternate; background: #88bdf2; }
-.blob-2 { width: 500px; height: 500px; bottom: 5%; right: 10%; animation: down-left 22s infinite alternate; background: #6a89a7; }
-.blob-3 { width: 350px; height: 350px; top: 40%; left: 15%; animation: diagonal 25s infinite alternate; background: #BDDDFC; }
-.blob-4 { width: 450px; height: 450px; bottom: 20%; left: 45%; animation: horizontal 20s infinite alternate; background: #6a89a7; }
-.blob-5 { width: 550px; height: 550px; top: -5%; right: 20%; animation: up-right 28s infinite alternate; background: #88bdf2; }
-.blob-6 { width: 300px; height: 300px; bottom: 35%; left: 8%; animation: down-left 19s infinite alternate; background: #BDDDFC; }
-.blob-7 { width: 420px; height: 420px; top: 65%; right: 12%; animation: diagonal 24s infinite alternate; background: #88bdf2; }
-.blob-8 { width: 380px; height: 380px; top: 18%; left: 55%; animation: horizontal 26s infinite alternate; background: #BDDDFC; }
-.blob-9 { width: 320px; height: 320px; bottom: 45%; right: 35%; animation: up-right 21s infinite alternate; background: #6a89a7; }
-.blob-10 { width: 480px; height: 480px; top: 25%; right: 45%; animation: down-left 30s infinite alternate; background: #88bdf2; }
-/* ... (Bubbles 11-20 follow same scale increase) */
-.blob-11, .blob-12, .blob-13, .blob-14, .blob-15, .blob-16, .blob-17, .blob-18, .blob-19, .blob-20 {
-    width: 350px; height: 350px; opacity: 0.9;
+/* Grouping bubbles for randomized paths */
+.blob-1, .blob-5, .blob-9, .blob-13, .blob-17, .blob-21, .blob-25, .blob-29 {
+  width: 450px; height: 450px; 
+  animation: random-path-1 25s infinite linear alternate, morph 10s infinite alternate;
 }
 
-/* --- ANIMATION KEYFRAMES --- */
-@keyframes morph {
-  0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; }
-  50% { border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%; }
+.blob-2, .blob-6, .blob-10, .blob-14, .blob-18, .blob-22, .blob-26, .blob-30 {
+  width: 400px; height: 400px; 
+  animation: random-path-2 18s infinite linear alternate, morph 7s infinite alternate;
 }
 
-@keyframes up-right { 0% { transform: translate(-50px, 50px); } 100% { transform: translate(150px, -150px); } }
-@keyframes down-left { 0% { transform: translate(50px, -50px); } 100% { transform: translate(-150px, 150px); } }
-@keyframes diagonal { 0% { transform: translate(-150px, -150px); } 100% { transform: translate(150px, 150px); } }
-@keyframes horizontal { 0% { transform: translate(-200px, 0); } 100% { transform: translate(200px, 0); } }
+.blob-3, .blob-7, .blob-11, .blob-15, .blob-19, .blob-23, .blob-27, .blob-4, .blob-8, .blob-12, .blob-16, .blob-20, .blob-24, .blob-28 {
+  width: 350px; height: 350px; 
+  animation: random-path-3 12s infinite linear alternate, morph 5s infinite alternate;
+}
 
-/* CONTENT STYLING */
+/* Starting Positions */
+.blob-1 { top: 10%; left: 5%; } .blob-2 { bottom: 5%; right: 10%; }
+.blob-3 { top: 40%; left: 15%; } .blob-5 { top: -5%; right: 20%; }
+
+/* ANIMATION KEYFRAMES */
+@keyframes random-path-1 { 0% { transform: translate(0, 0); } 100% { transform: translate(200px, -150px); } }
+@keyframes random-path-2 { 0% { transform: translate(0, 0); } 100% { transform: translate(-250px, 200px); } }
+@keyframes random-path-3 { 0% { transform: translate(100px, -100px); } 100% { transform: translate(-100px, 300px); } }
+@keyframes morph { 0%, 100% { border-radius: 40% 60% 60% 40% / 40% 40% 60% 60%; } 50% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; } }
+
 .hero-content { position: relative; z-index: 10; text-align: center; pointer-events: none; }
 .hero-content a { pointer-events: auto; }
-.hero__title { font-size: 5rem; color: white !important; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
+.hero__title { font-size: 5rem; color: white !important; text-shadow: 0 5px 25px rgba(0,0,0,0.8); }
 .hero__about-me {
   max-width: 800px;
   margin: 1rem auto;
   padding: 2rem;
-  background: rgba(30, 39, 48, 0.9); 
+  background: rgba(30, 39, 48, 0.85); 
   border-radius: 15px;
   color: white;
   text-align: left;
   border: 1px solid rgba(136, 189, 242, 0.4);
 }
 
-/* CLEANUP */
 .hero, footer { display: none !important; }
 .navbar { background-color: #1e2730 !important; z-index: 100; }
