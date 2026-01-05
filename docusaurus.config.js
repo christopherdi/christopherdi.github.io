@@ -89,6 +89,11 @@ const config = {
   
       // ... down in the navbar section
       navbar: {
+        title: 'Christopher Di', // This is what creates the "Home" link in the top left
+        logo: {
+          alt: 'My Site Logo',
+          src: 'img/logo.svg', // Ensure this file exists in static/img or remove this logo block
+        },
         items: [
           {to: '/experience', label: 'Experience', position: 'left'},
           {to: '/projects', label: 'Projects', position: 'left'},
