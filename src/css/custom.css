@@ -6,25 +6,83 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #6a89a7;
+  
+  /* Variations for hover states and button depths */
+  --ifm-color-primary-dark: #384959;    /* Your darkest shade */
+  --ifm-color-primary-darker: #2d3b48;
+  --ifm-color-primary-darkest: #1e2730;
+  
+  --ifm-color-primary-light: #88bdf2;   /* Your mid-blue */
+  --ifm-color-primary-lighter: #a0ccf5;
+  --ifm-color-primary-lightest: #BDDDFC; /* Your lightest blue */
+
+  /* The background of the Hero Banner on the homepage */
+  --ifm-hero-background-color: #384959;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #88bdf2;        /* Mid-blue for links */
+  --ifm-color-primary-dark: #6a89a7;
+  --ifm-color-primary-darker: #384959;
+  --ifm-color-primary-darkest: #2d3b48;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.heroBanner {
+  padding: 10rem 0; /* Makes the blue part bigger */
+  position: relative;
+  overflow: hidden;
+  background-color: #384959; /* Your dark slate blue */
+}
+
+/* The lava lamp blobs */
+.lava-blob {
+  position: absolute;
+  filter: blur(50px);
+  border-radius: 50%;
+  opacity: 0.6;
+  z-index: 0;
+  animation: move 20s infinite alternate;
+}
+
+.blob-1 {
+  width: 400px;
+  height: 400px;
+  background: #88bdf2; /* Mid blue */
+  top: -10%;
+  left: 10%;
+  animation-duration: 25s;
+}
+
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #6a89a7; /* Your primary blue */
+  bottom: -20%;
+  right: 5%;
+  animation-duration: 30s;
+}
+
+.blob-3 {
+  width: 300px;
+  height: 300px;
+  background: #BDDDFC; /* Lightest blue */
+  top: 40%;
+  left: 50%;
+  animation-duration: 15s;
+}
+
+@keyframes move {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(100px, 50px) scale(1.2); }
+}
+
+/* Ensure text stays on top of blobs */
+.hero__title, .hero__subtitle, .buttons {
+  position: relative;
+  z-index: 1;
 }

@@ -82,7 +82,9 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       colorMode: {
-        respectPrefersColorScheme: true,
+        defaultMode: 'dark',
+        disableSwitch: true, // This hides the sun/moon icon
+        respectPrefersColorScheme: false, // This ignores the user's OS settings
       },
       // Inside docusaurus.config.js
       onBrokenLinks: 'warn', // Change 'throw' to 'warn' to prevent build crashes
