@@ -1,42 +1,37 @@
-import clsx from 'clsx';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import React from 'react';
 import Layout from '@theme/Layout';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
-
 import Heading from '@theme/Heading';
-import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+const ProjectList = [
+  {
+    title: 'Free User Potential Usage',
+    tech: 'Python, PostgreSQL, Snowflake',
+    description: 'Engineered scalable SQL pipelines to identify conversion clusters and accelerated engineering UI turnaround by 13%.',
+    link: '/docs/zoom-snowflake' 
+  },
+  {
+    title: 'Markdown Lint & Git Auto-Comment',
+    tech: 'Python, Bash, Jenkins',
+    description: 'Created a linting engine integrated with CI/CD to automate syntax validation and inject real-time failure diagnostics into PRs.',
+    link: '/docs/ibm-triage'
+  },
+];
+
+export default function Projects() {
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
+    <Layout title="Projects" description="Technical Projects by Christopher Di">
+      <main style={{maxWidth: '900px', margin: '0 auto', padding: '2rem'}}>
+        <Heading as="h1" style={{textAlign: 'center', marginBottom: '2rem'}}>Technical Projects</Heading>
+        <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px'}}>
+          {ProjectList.map((project, idx) => (
+            <div key={idx} style={{padding: '1.5rem', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9'}}>
+              <Heading as="h3">{project.title}</Heading>
+              <p><strong>Tech Stack:</strong> {project.tech}</p>
+              <p>{project.description}</p>
+              <a className="button button--outline button--primary" href={project.link}>Read Case Study</a>
+            </div>
+          ))}
         </div>
-      </div>
-    </header>
-  );
-}
-
-export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
       </main>
     </Layout>
   );
