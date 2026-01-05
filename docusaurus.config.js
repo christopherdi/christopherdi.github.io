@@ -84,12 +84,19 @@ const config = {
       colorMode: {
         respectPrefersColorScheme: true,
       },
+      // Inside docusaurus.config.js
       navbar: {
         title: 'Christopher Di',
         items: [
           {to: '/experience', label: 'Experience', position: 'left'},
           {to: '/projects', label: 'Projects', position: 'left'},
           {to: '/hobbies', label: 'Hobbies', position: 'left'},
+          // Add this new item here
+          {
+            href: '/Christopher_Di_Resume.pdf',
+            label: 'Resume',
+            position: 'right',
+          },
           {
             href: 'https://github.com/christopherdi',
             label: 'GitHub',
