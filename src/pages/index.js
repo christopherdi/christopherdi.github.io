@@ -9,16 +9,14 @@ import styles from './index.module.css';
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      {/* Lava Lamp Background Elements */}
+    <header className={clsx('hero', styles.heroBanner)}>
+      {/* These div 'blobs' now have room to float in the 100vh container */}
       <div className="lava-blob blob-1"></div>
       <div className="lava-blob blob-2"></div>
       <div className="lava-blob blob-3"></div>
 
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          Christopher Di
-        </Heading>
+      <div className="container" style={{textAlign: 'center'}}>
+        <h1 className="hero__title">Christopher Di</h1>
         <p className="hero__subtitle">Data Science @ UC Berkeley | Software Engineering Intern</p>
         <div className={styles.buttons}>
           <Link
