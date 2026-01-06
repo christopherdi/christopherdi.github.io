@@ -49,7 +49,7 @@ html, body, #__docusaurus {
   bottom: -300px;
   animation: animate-up 55s linear infinite;
   left: calc(var(--i) * 5.3%);
-  animation-delay: calc(var(--i) * -3.4s);
+  animation-delay: calc(var(--i) * -4.4s);
 }
 
 /* --- FALLING BUBBLES (TOP TO BOTTOM) --- */
