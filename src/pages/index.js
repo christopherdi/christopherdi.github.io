@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
+import Link from '@docusaurus/Link'; 
 import clsx from 'clsx';
 import styles from './index.module.css';
 
@@ -8,27 +8,24 @@ export default function Home() {
   return (
     <Layout title="Christopher Di" description="Portfolio">
       <main className="lava-lamp-container">
-        {/* ADVANCED SVG FILTER: Glows the edges, not the overlaps */}
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style={{ display: 'none' }}>
           <defs>
             <filter id="goo-no-overlap-glow" x="-50%" y="-50%" width="200%" height="200%">
-              {/* Step 1: Create the gooey collision */}
-              <feGaussianBlur in="SourceGraphic" stdDeviation="15" result="blur" />
+              <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
               <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
-              
-              {/* Step 2: Create a 'flat' version of the goo */}
-              <feFlood floodColor="#88bdf2" result="color" />
-              <feComposite in="color" in2="goo" operator="in" result="flat-goo" />
-
-              {/* Step 3: Add an inner glow that respects the final shape silhouette */}
-              <feMorphology operator="erode" radius="3" in="goo" result="shrunken" />
-              <feGaussianBlur in="shrunken" stdDeviation="10" result="inner-blur" />
-              <feComposite in="flat-goo" in2="inner-blur" operator="out" result="inner-glow-edge" />
-              
-              {/* Step 4: Merge the flat color and the edge glow */}
+              <feFlood floodColor="#FF4500" result="orange-color" />
+              <feComposite in="orange-color" in2="goo" operator="in" result="orange-goo" />
+              <feFlood floodColor="#FFD700" result="yellow-bloom" />
+              <feComposite in="yellow-bloom" in2="goo" operator="in" result="yellow-goo" />
+              <feGaussianBlur in="yellow-goo" stdDeviation="10" result="soft-glow" />
+              <feSpecularLighting in="blur" surfaceScale="5" specularConstant="1" specularExponent="30" lightingColor="#ffffff" result="specOut">
+                <fePointLight x="-5000" y="-10000" z="20000" />
+              </feSpecularLighting>
+              <feComposite in="specOut" in2="goo" operator="in" result="white-shine" />
               <feMerge>
-                <feMergeNode in="flat-goo" />
-                <feMergeNode in="inner-glow-edge" />
+                <feMergeNode in="soft-glow" />
+                <feMergeNode in="orange-goo" />
+                <feMergeNode in="white-shine" />
               </feMerge>
             </filter>
           </defs>
@@ -36,7 +33,11 @@ export default function Home() {
 
         <div className="blob-wrapper">
           {[...Array(30)].map((_, i) => (
-            <div key={i} className={`lava-blob blob-${i + 1}`}></div>
+            <div 
+              key={i} 
+              className={`lava-blob blob-${i + 1}`} 
+              style={{ '--i': i }}
+            ></div>
           ))}
         </div>
 
@@ -45,12 +46,19 @@ export default function Home() {
           <p className="hero__subtitle">Data Science @ UC Berkeley | Software Engineering Intern</p>
           <div className="hero__about-me">
             <h2>About Me</h2>
-            <p>I am a Data Science student at <strong>UC Berkeley</strong> with a passion for building high-performance software.</p>
+            <p>
+              I am a Data Science student at <strong>UC Berkeley</strong> with a passion for building 
+              high-performance software and data-driven solutions.
+            </p>
           </div>
           <div className={styles.buttons}>
-            <Link className="button button--secondary button--lg" to="/experience">View My Experience 💼</Link>
+            <Link className="button button--secondary button--lg" to="/experience">
+              View My Experience 💼
+            </Link>
           </div>
         </div>
+
+        <div className="lava-base"></div>
       </main>
     </Layout>
   );
