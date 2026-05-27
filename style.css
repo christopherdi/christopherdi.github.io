@@ -1,0 +1,10 @@
+/* Custom styles to achieve the perfect pixel-art game feel */
+body {
+    image-rendering: pixelated;
+}
+
+/* This creates the iconic retro dual-line borders seen in Gen 4 textboxes */
+.platinum-box {
+    border: 4px solid #000;
+    box-shadow: inset 2px 2px 0px #fff, inset -2px -2px 0px #888;
+}
