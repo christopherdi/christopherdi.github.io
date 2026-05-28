@@ -14,14 +14,33 @@
     <div class="absolute inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
         <div class="absolute w-[250vw] h-[250vh] -top-[75vh] -left-[75vw] sky-parallax-matrix">
             
-            <div class="absolute inset-0 ambient-sky"></div>
+            <div class="absolute inset-0 ambient-sky">
+                <div class="nebula-cloud nebula-violet"></div>
+                <div class="nebula-cloud nebula-cyan"></div>
+            </div>
+
+            <div class="orbit-ring absolute rounded-full top-[20%] right-[25%] w-[340px] h-[340px] -translate-x-[85px] -translate-y-[85px]"></div>
+            <div class="orbit-ring absolute rounded-full top-[20%] right-[25%] w-[500px] h-[500px] -translate-x-[165px] -translate-y-[165px] border-dashed"></div>
+            <div class="orbit-ring absolute rounded-full bottom-[25%] left-[18%] w-[220px] h-[220px] -translate-x-[65px] -translate-y-[65px]"></div>
 
             <img class="galaxy absolute top-[10%] left-[15%] w-[500px] h-[500px]" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/NGC_4414_%28NASA-med%29.jpg" alt="NGC 4414 Galaxy">
             <img class="galaxy absolute bottom-[18%] right-[20%] w-[450px] h-[450px]" src="https://upload.wikimedia.org/wikipedia/commons/c/c3/NGC_4414_%28NASA-med%29.jpg" alt="NGC 4414 Cosmic View">
 
+            <div class="absolute top-[48%] left-[22%] w-[260px] h-[260px] flex items-center justify-center">
+                <img class="black-hole-disk absolute w-full h-full object-contain mix-blend-screen opacity-80" src="https://static.vecteezy.com/system/resources/thumbnails/052/659/106/small/cosmic-swirl-of-a-stunning-galaxy-in-deep-space-png.png" alt="Accretion Disk">
+                <div class="black-hole-singularity w-16 h-16 bg-black rounded-full shadow-[0_0_30px_#000000] z-10"></div>
+            </div>
+
             <img class="celestial-body planet-giant-mercury absolute" src="https://nineplanets.org/wp-content/uploads/2019/09/mercury.png" alt="Mercury Major">
             <img class="celestial-body planet-mercury absolute" src="https://nineplanets.org/wp-content/uploads/2019/09/mercury.png" alt="Mercury Minor">
-            <div class="celestial-body planet-crimson-outpost absolute rounded-full shadow-3d-sphere-red"></div>
+            <div class="celestial-body planet-crimson-outpost absolute rounded-full"></div>
+
+            <img class="asteroid-belt absolute top-[28%] right-[15%] w-[400px] opacity-40 rotate-12" src="https://static.vecteezy.com/system/resources/previews/035/543/832/non_2x/flying-asteroid-isolated-on-transparent-background-ai-generated-free-png.png" alt="Asteroid Cluster Alpha">
+            <img class="asteroid-belt absolute bottom-[35%] left-[32%] w-[300px] opacity-30 -rotate-45" src="https://static.vecteezy.com/system/resources/previews/035/543/832/non_2x/flying-asteroid-isolated-on-transparent-background-ai-generated-free-png.png" alt="Asteroid Cluster Beta">
+
+            <div class="satellite-path absolute top-[35%] left-[5%] w-[120vw] h-[1px] bg-indigo-500/5 -rotate-6">
+                <div class="satellite absolute text-[10px] text-cyan-400/60 font-mono tracking-widest uppercase select-none">📡 SAT-METRICS_026</div>
+            </div>
 
             <div id="ursa-major" class="constellation absolute w-72 h-72 top-[12%] left-[10%]"></div>
             <div id="orion" class="constellation absolute w-80 h-80 top-[45%] left-[45%]"></div>
@@ -170,8 +189,9 @@
         }
         setInterval(fireShootingStar, 3500);
 
+        // POPULATED DENSE STARFIELD (2500 Stars)
         const sky = document.querySelector('.ambient-sky');
-        for (let i = 0; i < 800; i++) {
+        for (let i = 0; i < 2500; i++) {
             const star = document.createElement('div');
             star.className = 'ambient-star';
             star.style.left = gsap.utils.random(0, 100) + '%';
@@ -182,6 +202,22 @@
             star.style.height = dimensions + 'px';
             sky.appendChild(star);
         }
+
+        // CONSTANT LOGICAL ROTATIONS (Black Hole Accretion Disk Simulation)
+        gsap.to(".black-hole-disk", {
+            rotation: 360,
+            duration: 25,
+            repeat: -1,
+            ease: "linear"
+        });
+
+        // CONTINUOUS SYSTEM DRIFT (Satellite telemetry animation track)
+        gsap.to(".satellite", {
+            x: "115vw",
+            duration: 45,
+            repeat: -1,
+            ease: "linear"
+        });
 
         function buildConstellation(divId, nodes) {
             const box = document.getElementById(divId);
@@ -211,18 +247,11 @@
             }
         }
 
-        // Vector Coordinate Mapping for Expanded Constellation Layout
         buildConstellation('ursa-major', [{x:10,y:30},{x:22,y:32},{x:35,y:40},{x:45,y:55},{x:75,y:58},{x:85,y:30},{x:45,y:25},{x:45,y:55}]);
         buildConstellation('orion', [{x:25,y:15},{x:50,y:25},{x:75,y:15},{x:60,y:45},{x:50,y:45},{x:40,y:45,break:true},{x:25,y:75},{x:75,y:75}]);
         buildConstellation('crux', [{x:50,y:5},{x:50,y:95},{x:50,y:45,break:true},{x:15,y:45},{x:85,y:45}]);
-        
-        // NEW 1: Cassiopeia (W-shape vector profile)
         buildConstellation('cassiopeia', [{x:10,y:60},{x:30,y:25},{x:50,y:55},{x:70,y:20},{x:90,y:50}]);
-        
-        // NEW 2: Ursa Minor (Little Dipper curve profile)
         buildConstellation('ursa-minor', [{x:90,y:15},{x:75,y:25},{x:62,y:40},{x:50,y:60},{x:20,y:62},{x:15,y:85},{x:40,y:90},{x:50,y:60}]);
-        
-        // NEW 3: Leo (Sickle pointer outline profile)
         buildConstellation('leo', [{x:85,y:75},{x:55,y:80},{x:35,y:65},{x:15,y:50},{x:22,y:25},{x:40,y:22},{x:48,y:40},{x:35,y:65,break:true},{x:55,y:80},{x:75,y:95},{x:90,y:90},{x:85,y:75}]);
     </script>
 </body>
